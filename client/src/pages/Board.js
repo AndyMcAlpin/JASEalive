@@ -43,22 +43,22 @@ const Board = (props) => {
   
   return (
     <div className="tile is-ancestor justify-space-around">
-      <div className="is-3 is-vertical is-transparent is-parent mb-3 justify-space-around mt-3">
+
+      <div className="is-3 is-vertical is-transparent is-parent mb-3 justify-space-around mt-3 col-md-6">
         <div className= "tile is-child textClass p-3 mt-3">
             <h2 className="is-underlined has-text-black-bis">List Of Mentors</h2>
             <UserList usersarr={data.users} role="Mentor"></UserList>  
         </div>
       </div>
+
+
       <div className='tile is-parent flex-row justify-space-around mb-3'>
-        <div className='about col-12 mb-3 justify-space-around textClass'>
+        <div className='about col-12 mb-3 justify-space-around textClass has-text-centered topic_container'>
           <h4 className='p-3  w-100'>Select a topic:</h4>
           <div className="dropdown is-hoverable mb-3">
             <div className="dropdown-trigger">
               <button className="btn bg-secondary w-100 is-black-bis ml-3" aria-haspopup="true" aria-controls="dropdown-menu2">
                 <span>Topics!</span>
-                <span className="icon is-small">
-                  <i className="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
               </button>
             </div>
             <div className="dropdown-menu" id="dropdown-menu2" role="menu">

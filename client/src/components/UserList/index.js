@@ -27,10 +27,21 @@ const UserList = ({usersarr, role}) => {
         <p> No Mentors </p>
       }
       {menteeList && mentorArr.map(user => (
-        <button className="btn w-100 display-block mb-2" key={user._id}>
-          <Link to={`/profile/${user.username}`}>{user.username}</Link>
-          <p>About: {user.aboutText}</p>
-        </button>))
+        <>
+          <span>
+          <Link to={`/profile/${user.username}`} >
+          
+          <button className="btn w-100 display-block mb-2" key={user._id}>
+          {user.username}
+          </button>
+          
+          </Link>
+          </span>
+        
+        <p>About: {user.aboutText}</p>
+        </>
+        ))
+
         }
     </div>
   );

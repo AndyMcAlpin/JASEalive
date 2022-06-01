@@ -129,6 +129,7 @@ nav a:hover {
   
 }
 
+
 .textClass{
   background: var(--text-background);
   border-radius: 20px 20px 20px 20px;
@@ -139,6 +140,10 @@ nav a:hover {
   border-radius: 20px 20px 20px 20px;
   font-weight: bolder;
   
+}
+
+.topic_container{
+  height: 130px;;
 }
 
 .page-title {

@@ -83,6 +83,7 @@ const WisdomForm = () => {
   return (
 
     <div className='p-3 textClass'>
+    <h4>Add a Wisdom:</h4>
         <p className={`m-0 ${characterCount === 280 || error ? 'text-error' : ''}`}>
         Character Count: {characterCount}/280
         {error && <span className="ml-2">Something went wrong...</span>}
@@ -94,15 +95,17 @@ const WisdomForm = () => {
         <textarea
         placeholder="This is the wisdom I would like to give..."
         value={wisdomText}
-        className="form-input col-12 col-md-9"
+        className="form-input col-12 "
         onChange={handleChange}
         ></textarea>
+        <h6>Add your Youtube video (optional)</h6>
         <textarea
         placeholder="Copy everything after the = from the url of the youTube video "
         value={youTubeLink}
-        className="form-input col-12 col-md-9"
+        className="form-input col-12 "
         onChange={handleChange3}
         ></textarea>
+        <h6>Select a topic:</h6>
         <select                
           className="form-input"
           name="topic"

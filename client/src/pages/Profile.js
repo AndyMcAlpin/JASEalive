@@ -57,6 +57,7 @@ const Profile = (props) => {
   var userMentee=false;
   var mentorProfile=false;
   var userProfile=false;
+  var bothProfile=false;
   if(!username && user.role==="Mentor"){
     userMentor=true;
   }
@@ -69,6 +70,9 @@ const Profile = (props) => {
   }
   if(username&&user.role==="User"){
     userProfile=true;
+  }
+  if(userMentor||userMentee){
+    bothProfile=true;
   }
 
     //topic select dropdown 
@@ -107,8 +111,8 @@ const Profile = (props) => {
   return (
     <main className= "justify-space-around">
       <div className=" mb-3 is-justify-content-center ">
-        <h2 className="bg-secondary is-black-bis p-3 profileTitle mb-3 has-text-centered">
-          Viewing {username ? `${user.username}'s` : 'your'} profile-{user.username}.
+        <h2 className="bg-secondary is-black-bis p-1 profileTitle mb-3 has-text-centered is-size-4-mobile">
+          Viewing {username ? `${user.username}'s profile` : `your profile ${user.username}`}
         </h2>
         
         <div className='textClass'>
@@ -117,23 +121,20 @@ const Profile = (props) => {
         </div>
         <section className='card-content mb-3'>{user.aboutText ? `${user.aboutText}` : 'No about listed.'}</section>
         </div>
-        <div>
-          <button className="btn ml-auto" onClick={handleDeleteUser}>
-                  Delete Account
-          </button>
-        </div>
+
         
         {/* if the user is a Mentor looking at their own profile */}
         {userMentor &&
           <>
-          <h4>Update your about:</h4>
+          
           <div className="col-12 mb-3">
             <AboutForm _id={user._id}/>
           </div>
           <div className="col-12 mb-3">
-          <h4>Add a Wisdom:</h4>
+          
             <WisdomForm></WisdomForm>
           </div>
+          
             <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
                <WisdomList
                 wisdoms={wisdomsArr}
@@ -166,17 +167,15 @@ const Profile = (props) => {
               )):
               <h5>Go find some mentors!</h5>}
             </div>  
+{/* topic dropdown */}
+      <div className='tile is-parent flex-row justify-space-around mb-3 has-text-centered'>
+        <div className='about col-12 mb-3 justify-space-around  textClass'>
+             <h5 className='p-3 '>Select a topic:</h5>
+            <div className="dropdown is-hoverable mb-3 justify-space-around  ">
 
-      <div className='tile is-parent flex-row justify-space-around mb-3'>
-        <div className='about col-12 mb-3 justify-space-around textClass'>
-            <h5 className='p-3  w-100'>Select a topic:</h5>
-          <div className="dropdown is-hoverable mb-3 justify-space-around ">
                 <div className="dropdown-trigger justify-space-around ">
-                  <button className="btn bg-secondary w-100 is-black-bis ml-6 " aria-haspopup="true" aria-controls="dropdown-menu2">
+                  <button className="btn bg-secondary is-black-bis has-text-centered w-100" aria-haspopup="true" aria-controls="dropdown-menu2">
                     <span className=''>Topics!</span>
-                    <span className="icon is-small">
-                      <i className="fas fa-angle-down" aria-hidden="true"></i>
-                    </span>
                   </button>
                 </div>
 
@@ -206,12 +205,12 @@ const Profile = (props) => {
                       <button onClick={handleTopicChange} value="everything" className="button is-outlined is-primary is-light is-responsive is-fullwidth">Everything</button>
                     </div>
                   </div>
-
                 </div>
-          </div>
-          {/* displays mentors for wisdom filter */}
-          {user.mentors ? 
-          <div className="p-3">
+              </div>
+
+            {/* displays mentors for wisdom filter */}
+            {user.mentors ? 
+            <div className="p-3">
               <h5>Select If you want to see a specific mentors wisdom</h5>
               {(user.mentors).map(mentor => (
                 <>
@@ -220,15 +219,15 @@ const Profile = (props) => {
                 </button>
                 </>
               ))}
-              </div>
+            </div>
               :
               <h4>Go find some mentors!</h4>
               }
-        </div>
+</div>
         {/* describes the mentor and topic being seen */}
         
-        {mentor &&
-        <h5 className='textClass p-3 w-100 has-text-center is-capitalized'>viewing {mentor}'s wisdom for {topic}</h5>
+        {userMentee &&
+        <h5 className='textClass p-3 w-100 has-text-center '>viewing {mentor}'s wisdom for {topic}</h5>
         }
         
         <WisdomList
@@ -248,8 +247,8 @@ const Profile = (props) => {
 
         {/* looking at a mentor profile */}
         {mentorProfile&& 
-          <div className="col-12 col-lg-3 mb-3 justify-space-around">
-              <button className="btn ml-auto" onClick={handleAddMentor}>
+          <div className="col-12 col-lg-3 mb-3 justify-space-around has-text-centered">
+              <button className="btn mx-auto w-75 justify-space-around" onClick={handleAddMentor}>
                   Add Mentor
               </button>
               <WisdomList
@@ -270,6 +269,14 @@ const Profile = (props) => {
                   </button>
                 ))}
             </div>     
+          }
+          {bothProfile&&
+          <div className='has-text-centered is-centered'>
+            <h6 className='has-text-centered mt-6 textClass justify-space-around w-100'>Would you like to leave Life Sherpa?</h6>
+            <button className="btn justify-space-around w-25 mb-3" onClick={handleDeleteUser}>
+                    Delete Account
+            </button>
+          </div>
           }
       </main> 
       

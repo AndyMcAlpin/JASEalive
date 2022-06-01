@@ -70,7 +70,7 @@ const AboutForm = ({_id}) => {
         <textarea
         placeholder="Tell us about yourself and what you know..."
         value={aboutText}
-        className="form-input col-12 col-md-9 is-flex w-100"
+        className="form-input  is-flex w-100"
         onChange={handleChange}
         ></textarea>
         <br></br>

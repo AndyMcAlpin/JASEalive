@@ -54,12 +54,12 @@ const WisdomList = ({wisdoms, interest, username}) => {
     return <h3>No Wisdoms Yet</h3>;
   }
   return (
-    <div className="tile columns is-multiline is-flex is-parent justify-space-around">
+    <div className="tile columns is-multiline  is-parent justify-space-around has-text-centered col-md-6">
       {/* <h3>{title}</h3> */}
       {wisdomArr &&
         wisdomArr.map(wisdom => (
-          <div key={wisdom._id} className="column has-text-centered mb-3 mr-3 is-child box">
-            <p className="card-header">
+          <div key={wisdom._id} className="column m-3 is-child box col-md-12 ">
+            <div className="card-header">
               <Link
                 to={`/profile/${wisdom.username}`}
                 style={{ fontWeight: 700 }}
@@ -68,12 +68,12 @@ const WisdomList = ({wisdoms, interest, username}) => {
                 {wisdom.username}
               </Link>{' '}
               {/* thought on {wisdom.createdAt} */}
-            </p>
-            <div className="column has-text-centered card-body">
+            </div>
+            <div className="column card-body">
               <p>{wisdom.wisdomText}</p>
             </div>
             {wisdom.youTubeLink &&
-            <iframe width="300" height="158" src={`https://www.youtube.com/embed/${wisdom.youTubeLink}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="280" height="158" src={`https://www.youtube.com/embed/${wisdom.youTubeLink}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             }
           </div>
         ))}
